@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
-Route::get('/planets', 'PlanetController@index');
+Route::get('/planets', 'API\PlanetController@index');
+Route::get('/people/{id}/movies', 'API\PeopleController@movies');
+Route::get('/starships', 'API\StarshipController@index');
+
+Route::get('/films', function () {
+    return view('film.index');
+})->name('films.index');
+

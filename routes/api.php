@@ -19,5 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResources([
-    'planets'   => 'PlanetController',
+    'planets'   => 'API\PlanetController',
+    'starships' => 'API\StarshipController',
+    'films'     => 'API\FilmController',
 ]);
+
+Route::get('people/{id}/movies', 'API\PeopleController@movies');
