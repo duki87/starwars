@@ -1,16 +1,30 @@
 <?php
 
-namespace App\Repositories;
+
+namespace App\Helpers;
 
 use \GuzzleHttp\Client as GuzzleClient;
 use \GuzzleHttp\Psr7\Request as GuzzleRequest;
 use \GuzzleHttp\Psr7\Response as GuzzleResponse;
 use \GuzzleHttp\Pool;
 use \GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Http;
 
-class HttpRequests implements HttpRequestsInterface
+class DataHelper
 {
-    public function pool($urls)
+    public static function getFromApi($collection, $model)
+    {
+        $api = Http::get("https://swapi.dev/api/$collection/");
+        $pages = ceil($api['count']/count($api['results']));
+        $urls = array();
+        for($i=1;$i<=$pages;$i++) {
+            $urls[] = "https://swapi.dev/api/$collection/?page=$i";
+        }
+        $data = self::get($urls);
+        return self::toCollection($model, $data);
+    }
+
+    private static function get($urls)
     {
         $client = new GuzzleClient();
         $requests = [];
@@ -27,8 +41,6 @@ class HttpRequests implements HttpRequestsInterface
             'concurrency' => 5,
             'fulfilled' => function (GuzzleResponse $response, $index) use(&$responses) {
                 if ($response->getStatusCode() == 200) {
-                    // $responses[] = json_decode($response->getBody(), true);
-                    // $responses = array_merge(json_decode($response->getBody(), true), $responses);
                     $responses = array_merge(json_decode($response->getBody(), true)['results'], $responses);
                 }
             },
@@ -39,5 +51,10 @@ class HttpRequests implements HttpRequestsInterface
 
         $promise = $pool->promise()->wait();
         return $responses;
+    }
+
+    private static function toCollection($model, $data)
+    {   
+        return $model::hydrate($data);
     }
 }

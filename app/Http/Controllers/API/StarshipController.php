@@ -4,8 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
-use App\Repositories\HttpRequestsInterface;
 use Illuminate\Http\Request;
+use App\Helpers\DataHelper;
 
 class StarshipController extends Controller
 {
@@ -27,14 +27,16 @@ class StarshipController extends Controller
         for($i=1;$i<=$pages;$i++) {
             $urls[] = "https://swapi.dev/api/starships/?page=$i";
         }
-        $response = call_user_func_array('array_merge', array_column($this->httpRequests->pool($urls), 'results'));
-        $collection = collect($response);
+        return response(DataHelper::pool($urls), 200);
 
-        $starships = $collection->filter(function ($ship, $key) {
-            return $ship['passengers'] > 84000;
-        });
-        $starships->all();
-        return response($starships->values(), 200);
+        // $response = call_user_func_array('array_merge', array_column($this->httpRequests->pool($urls), 'results'));
+        // $collection = collect($response);
+
+        // $starships = $collection->filter(function ($ship, $key) {
+        //     return $ship['passengers'] > 84000;
+        // });
+        // $starships->all();
+        // return response($starships->values(), 200);
     }
 
     public function store(Request $request)

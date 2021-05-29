@@ -6,13 +6,17 @@
                     <div class="card-header">Star Wars Film List</div>
 
                     <div class="card-body">
-                        <vuetable ref="vuetable"
+                        <vuetable ref="filmtable"
                             api-url="/api/films"
                             :fields="columnNames"
-                            :data="films"
                             data-path=""
                             pagination-path=""
                         ></vuetable>
+                        <div style="padding-top:10px">
+                            <vuetable-pagination ref="pagination"
+                                @vuetable-pagination:change-page="onChangePage"
+                            ></vuetable-pagination>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -22,18 +26,23 @@
 
 <script>
     import Vuetable from 'vuetable-2';
+    import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
 
     export default {
         components: {
-            Vuetable
+            Vuetable,
+            VuetablePagination
         },
         data() {
             return {
-                columnNames: ["ID", "Title", "Opening", "Director", "Producer", "Release Date"],
+                columnNames: ["episode_id", "title", "opening_crawl", "director", "producer", "release_date"],
                 films: []
             }
         },
         methods: {
+            onChangePage(page) {
+                this.$refs.filmtable.changePage(page);
+            },
             getFilms() {
                 return axios.get('/api/films')
                     .then((res) => {
@@ -51,7 +60,7 @@
             }
         },
         mounted() {
-            this.getFilms();
+            //this.getFilms();
         }
     }
 </script>
