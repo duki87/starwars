@@ -25,3 +25,4 @@ Route::apiResources([
 ]);
 
 Route::get('people/{id}/movies', 'API\PeopleController@movies');
+Route::get('films/{film_id}/{collection}', 'API\FilmController@relation');

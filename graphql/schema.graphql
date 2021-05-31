@@ -5,18 +5,13 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
-    users: [User!]! @paginate(defaultCount: 10)
-    user(id: ID @eq): User @find
+    films: [Film!]! @paginate(defaultCount: 10)
+    film(id: String! @eq): Film @findById
 }
 
-type User {
-    id: ID!
-    name: String!
-    email: String!
-    created_at: DateTime!
-    updated_at: DateTime!
-}
-
-type Planet {
-    
+type Film {
+    id: String!
+    title: String!
+    created: String!
+    edited: String!
 }

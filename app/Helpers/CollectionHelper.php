@@ -23,6 +23,15 @@ class CollectionHelper
 
     }
 
+    public static function sortData($sortKey, $sortRule, $data)
+    {
+        if($sortRule === 'desc') {
+            return $data->sortByDesc($sortKey)->values();
+        } else {
+            return $data->sortBy($sortKey)->values();
+        }
+    }
+
     protected static function paginator($items, $total, $perPage, $currentPage, $options)
     {
         return Container::getInstance()->makeWith(LengthAwarePaginator::class, compact(

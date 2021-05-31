@@ -7,14 +7,9 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
     public function testBasicTest()
     {
-        $response = $this->get('/');
+        $response = $this->get('/api/films');
 
         $response->assertStatus(200);
     }

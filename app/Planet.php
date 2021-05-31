@@ -3,11 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\APIModelTrait;
 
 class Planet extends Model
 {
+    use APIModelTrait;
+
+    private static $apiCollection = 'planets', $apiClass = \App\Planet::class;
+
     protected $fillable = [
-        "name", "rotation_period", "orbital_period", "diameter", "climate", "gravity", "terrain", "surface_water", "population", "created", "edited", "url"
+        "id", "name", "rotation_period", "orbital_period", "diameter", "climate", "gravity", "terrain", "surface_water", "population", "created", "edited", "url"
     ];
 
     public function residents()

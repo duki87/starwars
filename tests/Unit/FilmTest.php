@@ -2,12 +2,27 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+//use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+use App\Film;
 
 class FilmTest extends TestCase
 {
-    public function testExample()
+    public function testFilmRoot()
     {
-        $this->assertTrue(true);
+        $response = $this->get('/films');
+        $response->assertStatus(200);
+    }
+
+    public function testFilmApiRoot()
+    {
+        $response = $this->get('/api/films');
+        $response->assertStatus(200);
+    }
+
+    public function testFilmCollection()
+    {
+        $films = Film::getData();
+        $this->assertCount(6, $films);
     }
 }

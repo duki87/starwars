@@ -2,41 +2,24 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Support\Facades\Http;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Helpers\DataHelper;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
+use App\Http\Resources\FilmResource;
+use App\Helpers\CollectionHelper;
+use App\Starship;
 
 class StarshipController extends Controller
 {
-    protected $httpRequests;
-
-    public function __construct(HttpRequestsInterface $httpRequests)
-    {
-        $this->httpRequests = $httpRequests;
-    }
 
     public function index()
     {
-        $api = Http::get("https://swapi.dev/api/starships/");
-        if($api->getStatusCode() === 404) {
-            return response("Starships not found.", 500);
-        }
-        $pages = ceil($api['count']/count($api['results']));
-        $urls = array();
-        for($i=1;$i<=$pages;$i++) {
-            $urls[] = "https://swapi.dev/api/starships/?page=$i";
-        }
-        return response(DataHelper::pool($urls), 200);
-
-        // $response = call_user_func_array('array_merge', array_column($this->httpRequests->pool($urls), 'results'));
-        // $collection = collect($response);
-
-        // $starships = $collection->filter(function ($ship, $key) {
-        //     return $ship['passengers'] > 84000;
-        // });
-        // $starships->all();
-        // return response($starships->values(), 200);
+        $starships = Starship::getData();
+        $starships = $starships->filter(function($ship) {
+            return $ship->passengers > 84000;
+        });
+        $pagination = CollectionHelper::pagination($starships, 5);
+        return response($pagination, 200);
     }
 
     public function store(Request $request)
@@ -57,16 +40,5 @@ class StarshipController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    private function filterStarships($data)
-    {
-        $results = array();
-        for($i=0;$i<count($data);$i++) {
-            if($data[$i]['cargo_capacity'] > 84000) {
-                $results[] = $data[$i];
-            }
-        }
-        return $results;
     }
 }

@@ -1,0 +1,1 @@
+{{dd($collection.$film_id)}}

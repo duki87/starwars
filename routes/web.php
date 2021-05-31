@@ -25,3 +25,9 @@ Route::get('/films', function () {
     return view('film.index');
 })->name('films.index');
 
+Route::get('/films/{film_id}/{collection}', function ($film_id, $collection) {
+    return view('film.relation')
+        ->with('film_id', $film_id)
+        ->with('collection', $collection);
+})->name('films.relation');
+

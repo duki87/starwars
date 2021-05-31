@@ -3,12 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Helpers\DataHelper;
-// use App\Repositories\HttpRequestsInterface;
+use App\Traits\APIModelTrait;
 
 class Film extends Model
 {
+    use APIModelTrait;
+
     protected $fillable = [
+        "id",
         "title",
         "episode_id",
         "opening_crawl",
@@ -25,15 +27,10 @@ class Film extends Model
         "url"
     ];
 
-    public static function getFromApi()
-    {
-        $data = DataHelper::getFromApi('films', \App\Film::class);
-        return $data;
-    }
+    private static $apiCollection = 'films', $apiClass = \App\Film::class;
 
-    public static function characters()
+    public function characters()
     {
-        $data = DataHelper::getFromApi('people', \App\People::class);
-        return $data;
+        return ['people', \App\People::class];
     }
 }

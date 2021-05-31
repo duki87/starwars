@@ -4,17 +4,28 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Star Wars Film List</div>
-
-                    <div class="card-body">
-                        <vuetable ref="filmtable"
+                    <div class="card-body p-0">
+                        <vuetable ref="vuetable"
                             api-url="/api/films"
-                            :fields="columnNames"
-                            data-path=""
+                            :fields="fields"
+                            data-path="data"
                             pagination-path=""
-                        ></vuetable>
+                            @vuetable:pagination-data="onPaginationData"
+                            :css="css.table"
+                        >
+                            <div slot="tags-slot" slot-scope="props">
+                                <a :href="'/films/'+props.rowData.id+'/starships'">Starships({{ props.rowData.starships.length }})</a>
+                                <a :href="'/films/'+props.rowData.id+'/planets'">Planets({{ props.rowData.planets.length }})</a>
+                                <a :href="'/films/'+props.rowData.id+'/characters'">Characters({{ props.rowData.characters.length }})</a>
+                                <a :href="'/films/'+props.rowData.id+'/vehicles'">Vehicles({{ props.rowData.vehicles.length }})</a>
+                                <a :href="'/films/'+props.rowData.id+'/species'">Species({{ props.rowData.species.length }})</a>
+                            </div>
+                        </vuetable>
                         <div style="padding-top:10px">
                             <vuetable-pagination ref="pagination"
                                 @vuetable-pagination:change-page="onChangePage"
+                                :css="css.pagination"
+                                class="pull-right"
                             ></vuetable-pagination>
                         </div>
                     </div>
@@ -27,40 +38,81 @@
 <script>
     import Vuetable from 'vuetable-2';
     import VuetablePagination from "vuetable-2/src/components/VuetablePagination";
+    import { VuetablePaginationMixin } from 'vuetable-2';
+    import CssForBootstrap4 from './includes/VuetableCssBootstrap4.js';
 
     export default {
         components: {
             Vuetable,
             VuetablePagination
         },
+        //mixins: [VuetablePaginationMixin],
         data() {
             return {
-                columnNames: ["episode_id", "title", "opening_crawl", "director", "producer", "release_date"],
-                films: []
+                fields: [
+                    {
+                        name: "episode_id",
+                        title: '<i class="fa fa-tag"></i> ID',
+                        sortField: "episode_id",
+                        titleClass: 'text-center align-middle',
+                        dataClass: 'text-center align-middle',
+                    },
+                    {
+                        name: "title",
+                        title: '<i class="fa fa-font"></i> Title',
+                        sortField: "title",
+                        titleClass: 'text-left align-middle',
+                        dataClass: 'text-left align-middle',
+                    },
+                    {
+                        name: "opening_crawl",
+                        title: '<i class="fa fa-align-left"></i> Opening Crawl',
+                        sortField: "opening_crawl",
+                        titleClass: 'text-center align-middle',
+                        dataClass: 'text-left align-middle',
+                    },
+                    {
+                        name: "director",
+                        title: '<i class="fa fa-video-camera"></i> Director',
+                        sortField: "director",
+                        titleClass: 'text-center align-middle',
+                        dataClass: 'text-center align-middle',
+                    },
+                    {
+                        name: "producer",
+                        title: '<i class="fa fa-money"></i> Producer',
+                        sortField: "producer",
+                        titleClass: 'text-center align-middle',
+                        dataClass: 'text-center align-middle',
+                    },
+                    {
+                        name: "release_date",
+                        title: '<i class="fa fa-calendar"></i> Release Date',
+                        sortField: "release_date",
+                        titleClass: 'text-center align-middle',
+                        dataClass: 'text-center align-middle',
+                    },
+                    {
+                        name: "tags-slot",
+                        title: '<i class="fa fa-random"></i> Relations',
+                        titleClass: 'text-center align-middle',
+                        dataClass: 'text-left align-middle',
+                    }
+                ],
+                films: [],
+                css: CssForBootstrap4,
             }
         },
         methods: {
             onChangePage(page) {
-                this.$refs.filmtable.changePage(page);
+                this.$refs.vuetable.changePage(page);
             },
-            getFilms() {
-                return axios.get('/api/films')
-                    .then((res) => {
-                        console.log(res.data)
-                        for(let film of res.data) {
-                            this.films.push({ id: film.episode_id, title: film.title, opening_crawl: film.opening_crawl, director: film.director, producer: film.producer, release_date: film.release_date });
-                        }
-                        // if(res.data.length > 0) {
-                        //     this.columnNames = Object.keys(res.data[0]);
-                        // }
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            }
+            onPaginationData (paginationData) {
+                this.$refs.pagination.setPaginationData(paginationData)
+            },
         },
         mounted() {
-            //this.getFilms();
+
         }
     }
 </script>
