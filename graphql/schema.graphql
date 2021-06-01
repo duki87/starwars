@@ -5,13 +5,102 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
-    films: [Film!]! @paginate(defaultCount: 10)
-    film(id: String! @eq): Film @findById
+    films: [Film!]! @paginate(defaultCount: 5) @orderBy(column: "episode_id", direction: "ASC")
+    film(id: ID! @eq): Film @find
 }
 
 type Film {
-    id: String!
+    id: ID!
     title: String!
-    created: String!
-    edited: String!
+    episode_id: String!
+    director: String!
+    producer: String!
+    opening_crawl: String!
+    release_date: Date!
+    characters: [People!]! @belongsToMany
+    planets: [Planet!]! @belongsToMany
+    starships: [Starship!]! @belongsToMany
+    vehicles: [Vehicle!]! @belongsToMany
+    species: [Species!]! @belongsToMany
 }
+
+type People {
+    id: ID!
+    name: String!
+    height: String!
+    mass: String!
+    hair_color: String!
+    skin_color: String!
+    birth_year: String!
+    gender: String!
+    birth_year: String!
+    created_at: Date!
+    films: [Film!]! @belongsToMany
+}
+
+type Planet {
+    id: ID!
+    name: String!
+    rotation_period: String!
+    orbital_period: String!
+    diameter: String!
+    climate: String!
+    gravity: String!
+    terrain: String!
+    surface_water: String!
+    population: String!
+    created_at: Date!
+    films: [Film!]! @belongsToMany
+}
+
+type Starship {
+    id: ID!
+    name: String!
+    model: String!
+    manufacturer: String!
+    cost_in_credits: String!
+    length: String!
+    max_atmosphering_speed: String!
+    crew: String!
+    passengers: String!
+    cargo_capacity: String!
+    consumables: String!
+    hyperdrive_rating: String!
+    MGLT: String!
+    starship_class: String!
+    created_at: Date!
+    films: [Film!]! @belongsToMany
+}
+
+type Vehicle {
+    id: ID!
+    name: String!
+    model: String!
+    manufacturer: String!
+    cost_in_credits: String!
+    length: String!
+    max_atmosphering_speed: String!
+    crew: String!
+    passengers: String!
+    cargo_capacity: String!
+    consumables: String!
+    vehicle_class: String!
+    created_at: Date!
+    films: [Film!]! @belongsToMany
+}
+
+type Species {
+    id: ID!
+    name: String!
+    classification: String!
+    designation: String!
+    average_height: String!
+    skin_colors: String!
+    hair_colors: String!
+    eye_colors: String!
+    average_lifespan: String!
+    homeworld: Planet @belongsTo
+    language: String!
+    created_at: Date!
+    films: [Film!]! @belongsToMany
+} 

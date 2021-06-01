@@ -19,11 +19,14 @@ Route::get('/', function () {
 
 Route::get('/planets', 'API\PlanetController@index');
 Route::get('/people/{id}/movies', 'API\PeopleController@movies');
-Route::get('/starships', 'API\StarshipController@index');
 
 Route::get('/films', function () {
     return view('film.index');
 })->name('films.index');
+
+Route::get('/starships', function () {
+    return view('starship.index');
+})->name('starship.index');
 
 Route::get('/films/{film_id}/{collection}', function ($film_id, $collection) {
     return view('film.relation')

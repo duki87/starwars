@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.moment = require('moment');
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,6 +22,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('films-component', require('./components/FilmsComponent.vue').default);
+Vue.component('starships-component', require('./components/StarshipsComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

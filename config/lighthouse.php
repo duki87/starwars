@@ -17,12 +17,12 @@ return [
         /*
          * The URI the endpoint responds to, e.g. mydomain.com/graphql.
          */
-        'uri' => '/graphql',
+        'uri' => '/swapi',
 
         /*
          * Lighthouse creates a named route for convenient URL generation and redirects.
          */
-        'name' => 'graphql',
+        'name' => 'swapi',
 
         /*
          * Beware that middleware defined here runs before the GraphQL execution phase,

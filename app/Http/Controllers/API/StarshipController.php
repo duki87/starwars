@@ -14,12 +14,14 @@ class StarshipController extends Controller
 
     public function index()
     {
-        $starships = Starship::getData();
-        $starships = $starships->filter(function($ship) {
-            return $ship->passengers > 84000;
-        });
-        $pagination = CollectionHelper::pagination($starships, 5);
-        return response($pagination, 200);
+        $key = 'id';
+        $rule = 'asc';
+        if(isset($request['sort']) && !is_null($request['sort'])) {
+            list($key, $rule) = explode('|', request('sort'));
+        }
+        $starships = Starship::whereNotIn('passengers', ["n/a", "unknown"])->whereRaw('CAST(passengers AS integer) > 84000')->paginate(5);
+        //dd(Starship::pluck('passengers'));
+        return response($starships, 200);
     }
 
     public function store(Request $request)

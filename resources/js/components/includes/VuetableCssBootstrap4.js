@@ -17,7 +17,7 @@ export default {
       }
     },
     pagination: {
-      wrapperClass: 'pagination float-right',
+      wrapperClass: 'pagination float-right mb-2',
       activeClass: 'btn-primary',
       disabledClass: 'disabled',
       pageClass: 'btn rounded-0',

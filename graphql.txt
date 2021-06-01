@@ -1,0 +1,99 @@
+{
+  films(first: 5) {
+    data {
+      id
+      title
+      episode_id
+      opening_crawl
+      director
+      producer
+      release_date
+      characters {
+        id
+        name
+        height
+        mass
+        hair_color
+        skin_color
+        birth_year
+        gender
+        birth_year
+      }
+      planets {
+        id
+        name
+        rotation_period
+        orbital_period
+        diameter
+        climate
+        gravity
+        terrain
+        surface_water
+        population
+      }
+      starships {
+        id
+        name
+        model
+        manufacturer
+        cost_in_credits
+        length
+        max_atmosphering_speed
+        crew
+        passengers
+        cargo_capacity
+        consumables
+        hyperdrive_rating
+        MGLT
+        starship_class
+      }
+      vehicles {
+        id
+        name
+        model
+        manufacturer
+        cost_in_credits
+        length
+        max_atmosphering_speed
+        crew
+        passengers
+        cargo_capacity
+        consumables
+        vehicle_class
+      }
+      species {
+        id
+        name
+        classification
+        designation
+        average_height
+        skin_colors
+        hair_colors
+        eye_colors
+        average_lifespan
+        homeworld {
+          id
+          name
+          rotation_period
+          orbital_period
+          diameter
+          climate
+          gravity
+          terrain
+          surface_water
+          population
+        }
+        language
+      }
+    }
+    paginatorInfo {
+      currentPage
+      lastPage
+      hasMorePages
+      firstItem
+      lastItem
+      count
+    }
+  }
+}
+

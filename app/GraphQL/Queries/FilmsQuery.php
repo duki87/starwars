@@ -20,6 +20,6 @@ class FilmsQuery extends Query
 
     public function resolve($root, $args)
     {
-        return Film::getData();
+        return Film::get();
     }
 }

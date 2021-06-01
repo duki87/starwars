@@ -17,6 +17,18 @@ class Planet extends Model
 
     public function residents()
     {
-        return $this->hasMany(People::class);
+        return $this->hasMany(People::class, 'people_planets');
+    }
+
+    public function films()
+    {
+        return $this->belongsToMany(Film::class, 'films_planets');
+    }
+
+    public function scopeOfFilm($query, $film_id) 
+    {
+        return $query->whereHas('films', function($q) use($film_id) {
+            $q->where('film_id', $film_id);
+        });
     }
 }

@@ -31,6 +31,33 @@ class Film extends Model
 
     public function characters()
     {
-        return ['people', \App\People::class];
+        return $this->belongsToMany(People::class, 'people_films');
+    }
+
+    public function planets()
+    {
+        return $this->belongsToMany(Planet::class, 'films_planets');
+    }
+
+    public function starships()
+    {
+        return $this->belongsToMany(Starship::class, 'films_starships');
+    }
+
+    public function vehicles()
+    {
+        return $this->belongsToMany(Vehicle::class, 'films_vehicles');
+    }
+
+    public function species()
+    {
+        return $this->belongsToMany(Species::class, 'films_species');
+    }
+
+    public function scopeOfCharacter($query, $character_id) 
+    {
+        return $query->whereHas('characters', function($q) use($character_id) {
+            $q->where('people_id', $character_id);
+        });
     }
 }

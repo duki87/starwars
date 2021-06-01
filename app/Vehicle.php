@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\APIModelTrait;
 
-class Starship extends Model
+class Vehicle extends Model
 {
     use APIModelTrait;
 
@@ -21,30 +21,22 @@ class Starship extends Model
         "passengers",
         "cargo_capacity",
         "consumables",
-        "hyperdrive_rating",
-        "MGLT",
-        "starship_class",
-        "pilots",
-        "films",
+        "vehicle_class",
         "created",
         "edited",
         "url"
     ];
 
-    // protected $casts = [
-    //     'passengers' => 'integer',
-    // ];
+    private static $apiCollection = 'vehicles', $apiClass = \App\Vehicle::class;
 
-    private static $apiCollection = 'starships', $apiClass = \App\Starship::class;
-
-    public function pilots()
+    public function people()
     {
-        return $this->belongsToMany(Starship::class, 'people_starships');
+        return $this->belongsToMany(People::class, 'people_vehicles');
     }
 
     public function films()
     {
-        return $this->belongsToMany(Film::class, 'films_starships');
+        return $this->belongsToMany(Film::class, 'films_vehicles');
     }
 
     public function scopeOfFilm($query, $film_id) 

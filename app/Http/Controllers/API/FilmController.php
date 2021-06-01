@@ -17,7 +17,7 @@ class FilmController extends Controller
         if(isset($request['sort']) && !is_null($request['sort'])) {
             list($key, $rule) = explode('|', request('sort'));
         }
-        $films = Film::sortData($key, $rule)->paginateData(5)->getData();
+        $films = Film::withCount('starships')->withCount('planets')->withCount('characters')->withCount('vehicles')->withCount('species')->orderBy($key, $rule)->paginate(5);
         return response($films, 200);
     }
 
@@ -28,7 +28,7 @@ class FilmController extends Controller
 
     public function show($id)
     {
-        $film = Film::findById($id);
+        $film = Film::find($id);
         return response($film, 200);
     }
 
@@ -40,11 +40,5 @@ class FilmController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function starships($film_id)
-    {
-        $starships = Starship::filterData($film_id, 'films')->getData();
-        return response($starships, 200);
     }
 }

@@ -3,26 +3,16 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Star Wars Film List</div>
+                    <div class="card-header">Star Wars Starship List</div>
                     <div class="card-body p-0">
                         <vuetable ref="vuetable"
-                            api-url="/api/films"
+                            api-url="/api/starships"
                             :fields="fields"
                             data-path="data"
                             pagination-path=""
                             @vuetable:pagination-data="onPaginationData"
                             :css="css.table"
                         >
-                            <div slot="date-slot" slot-scope="props">
-                                <span>{{ formatDate(props.rowData.release_date) }}</span>
-                            </div>
-                            <div slot="tags-slot" slot-scope="props">
-                                <a :href="'/films/'+props.rowData.id+'/starships'">Starships({{ props.rowData.starships_count }})</a><br/>
-                                <a :href="'/films/'+props.rowData.id+'/planets'">Planets({{ props.rowData.planets_count }})</a><br/>
-                                <a :href="'/films/'+props.rowData.id+'/characters'">Characters({{ props.rowData.characters_count }})</a><br/>
-                                <a :href="'/films/'+props.rowData.id+'/vehicles'">Vehicles({{ props.rowData.vehicles_count }})</a><br/>
-                                <a :href="'/films/'+props.rowData.id+'/species'">Species({{ props.rowData.species_count }})</a>
-                            </div>
                         </vuetable>
                         <div style="padding-top:10px">
                             <vuetable-pagination ref="pagination"
@@ -54,55 +44,63 @@
             return {
                 fields: [
                     {
-                        name: "episode_id",
-                        title: '<i class="fa fa-tag"></i> ID',
-                        sortField: "episode_id",
+                        name: "name",
+                        title: '<i class="fa fa-font"></i> Name',
+                        sortField: "name",
                         titleClass: 'text-center align-middle',
                         dataClass: 'text-center align-middle',
                     },
                     {
-                        name: "title",
-                        title: '<i class="fa fa-font"></i> Title',
-                        sortField: "title",
+                        name: "model",
+                        title: '<i class="fa fa-font"></i> Model',
+                        sortField: "model",
                         titleClass: 'text-left align-middle',
                         dataClass: 'text-left align-middle',
                     },
                     {
-                        name: "opening_crawl",
-                        title: '<i class="fa fa-align-left"></i> Opening Crawl',
-                        sortField: "opening_crawl",
+                        name: "manufacturer",
+                        title: '<i class="fa fa-industry"></i> Manufacturer',
+                        sortField: "manufacturer",
                         titleClass: 'text-center align-middle',
                         dataClass: 'text-left align-middle',
                     },
                     {
-                        name: "director",
-                        title: '<i class="fa fa-video-camera"></i> Director',
-                        sortField: "director",
+                        name: "cost_in_credits",
+                        title: '<i class="fa fa-money"></i> Cost',
+                        sortField: "cost_in_credits",
                         titleClass: 'text-center align-middle',
                         dataClass: 'text-center align-middle',
                     },
                     {
-                        name: "producer",
-                        title: '<i class="fa fa-money"></i> Producer',
-                        sortField: "producer",
+                        name: "length",
+                        title: '<i class="fa fa-arrows-h"></i> Length',
+                        sortField: "length",
                         titleClass: 'text-center align-middle',
                         dataClass: 'text-center align-middle',
                     },
                     {
-                        name: "date-slot",
-                        title: '<i class="fa fa-calendar"></i> Release Date',
-                        sortField: "release_date",
+                        name: "max_atmosphering_speed",
+                        title: '<i class="fa fa-fighter-jet"></i> Speed',
+                        sortField: "max_atmosphering_speed",
                         titleClass: 'text-center align-middle',
                         dataClass: 'text-center align-middle',
                     },
                     {
-                        name: "tags-slot",
-                        title: '<i class="fa fa-random"></i> Relations',
+                        name: "crew",
+                        title: '<i class="fa fa-users"></i> Crew',
+                        sortField: "crew",
                         titleClass: 'text-center align-middle',
-                        dataClass: 'text-left align-middle',
-                    }
+                        dataClass: 'text-center align-middle',
+                    },
+                    {
+                        name: "passengers",
+                        title: '<i class="fa fa-users"></i> Passengers',
+                        sortField: "passengers",
+                        titleClass: 'text-center align-middle',
+                        dataClass: 'text-center align-middle',
+                    },
+
                 ],
-                films: [],
                 css: CssForBootstrap4,
             }
         },

@@ -26,6 +26,7 @@
     "dependencies": {
         "@fortawesome/vue-fontawesome": "^2.0.2",
         "font-awesome": "^4.7.0",
+        "moment": "^2.29.1",
         "vuetable-2": "^2.0.0-beta.4"
     }
 }

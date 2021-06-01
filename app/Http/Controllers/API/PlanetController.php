@@ -12,15 +12,12 @@ class PlanetController extends Controller
 {
     public function index()
     {
-        $key = 'episode_id';
+        $key = 'id';
         $rule = 'asc';
         if(isset($request['sort']) && !is_null($request['sort'])) {
             list($key, $rule) = explode('|', request('sort'));
         }
-        $planets = Planet::sortData($key, $rule)->paginateData(5)->getData();
-        $planets = $planets->filter(function ($planet) {
-            return Carbon::parse($planet->created)->gt(Carbon::parse('2014-04-12'));
-        });
+        $planets = Planet::where('created_at', '>', Carbon::parse('2014-04-12'))->paginate(5);
         return response($planets, 200);
     }
 

@@ -22,7 +22,7 @@ class FilmTest extends TestCase
 
     public function testFilmCollection()
     {
-        $films = Film::getData();
+        $films = Film::get();
         $this->assertCount(6, $films);
     }
 }
