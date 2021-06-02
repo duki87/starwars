@@ -60443,7 +60443,7 @@ var render = function() {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
+          _c("div", { staticClass: "card-header bg-dark" }, [
             _vm._v("Star Wars Film List")
           ]),
           _vm._v(" "),
@@ -60478,89 +60478,49 @@ var render = function() {
                     key: "tags-slot",
                     fn: function(props) {
                       return _c("div", {}, [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: "/films/" + props.rowData.id + "/starships"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "Starships(" +
-                                _vm._s(props.rowData.starships_count) +
-                                ")"
-                            )
-                          ]
-                        ),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(
+                            "Starships(" +
+                              _vm._s(props.rowData.starships_count) +
+                              ")"
+                          )
+                        ]),
                         _c("br"),
                         _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: "/films/" + props.rowData.id + "/planets"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "Planets(" +
-                                _vm._s(props.rowData.planets_count) +
-                                ")"
-                            )
-                          ]
-                        ),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(
+                            "Planets(" +
+                              _vm._s(props.rowData.planets_count) +
+                              ")"
+                          )
+                        ]),
                         _c("br"),
                         _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: "/films/" + props.rowData.id + "/characters"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "Characters(" +
-                                _vm._s(props.rowData.characters_count) +
-                                ")"
-                            )
-                          ]
-                        ),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(
+                            "Characters(" +
+                              _vm._s(props.rowData.characters_count) +
+                              ")"
+                          )
+                        ]),
                         _c("br"),
                         _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: "/films/" + props.rowData.id + "/vehicles"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "Vehicles(" +
-                                _vm._s(props.rowData.vehicles_count) +
-                                ")"
-                            )
-                          ]
-                        ),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(
+                            "Vehicles(" +
+                              _vm._s(props.rowData.vehicles_count) +
+                              ")"
+                          )
+                        ]),
                         _c("br"),
                         _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: "/films/" + props.rowData.id + "/species"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "Species(" +
-                                _vm._s(props.rowData.species_count) +
-                                ")"
-                            )
-                          ]
-                        )
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(
+                            "Species(" +
+                              _vm._s(props.rowData.species_count) +
+                              ")"
+                          )
+                        ])
                       ])
                     }
                   }
@@ -73379,8 +73339,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/konekt/starwars/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/konekt/starwars/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/dusan/projects/starwars/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/dusan/projects/starwars/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

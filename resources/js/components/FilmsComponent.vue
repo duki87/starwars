@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Star Wars Film List</div>
+                    <div class="card-header bg-dark">Star Wars Film List</div>
                     <div class="card-body p-0">
                         <vuetable ref="vuetable"
                             api-url="/api/films"
@@ -17,11 +17,11 @@
                                 <span>{{ formatDate(props.rowData.release_date) }}</span>
                             </div>
                             <div slot="tags-slot" slot-scope="props">
-                                <a :href="'/films/'+props.rowData.id+'/starships'">Starships({{ props.rowData.starships_count }})</a><br/>
-                                <a :href="'/films/'+props.rowData.id+'/planets'">Planets({{ props.rowData.planets_count }})</a><br/>
-                                <a :href="'/films/'+props.rowData.id+'/characters'">Characters({{ props.rowData.characters_count }})</a><br/>
-                                <a :href="'/films/'+props.rowData.id+'/vehicles'">Vehicles({{ props.rowData.vehicles_count }})</a><br/>
-                                <a :href="'/films/'+props.rowData.id+'/species'">Species({{ props.rowData.species_count }})</a>
+                                <a href="#">Starships({{ props.rowData.starships_count }})</a><br/>
+                                <a href="#">Planets({{ props.rowData.planets_count }})</a><br/>
+                                <a href="#">Characters({{ props.rowData.characters_count }})</a><br/>
+                                <a href="#">Vehicles({{ props.rowData.vehicles_count }})</a><br/>
+                                <a href="#">Species({{ props.rowData.species_count }})</a>
                             </div>
                         </vuetable>
                         <div style="padding-top:10px">

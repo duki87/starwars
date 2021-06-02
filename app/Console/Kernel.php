@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\RepeatArray::class,
+        \App\Console\Commands\NextBinaryNumber::class,
+        \App\Console\Commands\Reformat::class,
     ];
 
     /**

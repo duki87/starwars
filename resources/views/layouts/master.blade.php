@@ -10,7 +10,18 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
-<body style="background:url('/img/background.jpg')">
+<style>
+    body {
+        background: url('/img/background2.jpg') center no-repeat;
+        color: white;
+    }
+    .transparent {
+        background:rgba(0,0,0,0.9) !important;
+        color: white !important;
+    }
+</style>
+
+<body>
     <div id="app">
         @include('includes.header')
         @yield('content')

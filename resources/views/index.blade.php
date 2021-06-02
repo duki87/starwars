@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <div class="jumbotron">
+    <div class="jumbotron transparent">
     <h1 class="display-4 mb-4">Star Wars | Documentation</h1>
 	<h3>Film List</h3>
 	<p class="lead">To view full list of Star Wars Films, click <a href="{{ route('films.index') }}">here</a>.</p>
@@ -12,9 +12,9 @@
 	<p class="lead">Task 3: Return the next binary number in a string <span class="lead text-muted"> In console run command: php artisan command:next_binary_number {your-array}</span></p>
 
     <h3>Star Wars API</h3>
-	<p class="lead">Show all films where involved a given character acts: <span class="lead text-muted"> In console run command: php artisan {your-array}</span></p>
-	<p class="lead">Show all planets created after 12/04/2014: <span class="lead text-muted"> In console run command: php artisan {your-array}</span></p>
-	<p class="lead">Show people starships which have > 84000 passengers in total: <span class="lead text-muted"> In console run command: php artisan {your-array}</span></p>
+	<p class="lead">Show all films where involved a given character acts: <span class="lead text-muted"> /api/people/{character_id}/films [GET]</span></p>
+	<p class="lead">Show all planets created after 12/04/2014: <span class="lead text-muted"> /api/planets [GET]</span></p>
+	<p class="lead">Show people starships which have > 84000 passengers in total: <span class="lead text-muted"> /api/starships [GET]</span></p>
 
     <h3>GraphQL API</h3>
 	<p class="lead">Go to <a target="_blank" href="{{ url('/graphql-playground') }}">graphql playground to test.</a></p>
