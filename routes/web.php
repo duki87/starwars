@@ -28,6 +28,10 @@ Route::get('/starships', function () {
     return view('starship.index');
 })->name('starship.index');
 
+Route::get('/graphql-instructions', function () {
+    return view('graphql.instructions');
+})->name('graphql.instructions');
+
 Route::get('/films/{film_id}/{collection}', function ($film_id, $collection) {
     return view('film.relation')
         ->with('film_id', $film_id)

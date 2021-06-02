@@ -3,8 +3,26 @@
 @section('content')
 <div class="container-fluid">
     <div class="jumbotron">
-    <h1 class="display-4">Star Wars</h1>
-    <h3>Documentation</h3>
+    <h1 class="display-4 mb-4">Star Wars | Documentation</h1>
+    <h3>PHP Functions Test Case</h3>
+	<p class="lead">Task 1: Repeat 3 times the contents of an array <span class="lead text-muted"> In console run command: php artisan command:array_repeat {your-arr}</span></p>
+	<p class="lead">Task 2: Return input string without wovels, lowercased except first letter <span class="lead text-muted"> In console run command: php artisan command:reformat</span></p>
+	<p class="lead">Task 3: Return the next binary number in a string <span class="lead text-muted"> In console run command: php artisan command:next_binary_number {your-array}</span></p>
+
+    <h3>Star Wars API</h3>
+	<p class="lead">Task 1: Repeat 3 times the contents of an array <span class="lead text-muted"> In console run command: php artisan {your-array}</span></p>
+	<p class="lead">Task 2: Return input string without wovels, lowercased except first letter <span class="lead text-muted"> In console run command: php artisan {your-array}</span></p>
+	<p class="lead">Task 3: Return the next binary number in a string <span class="lead text-muted"> In console run command: php artisan {your-array}</span></p>
+
+    <h3>GraphQL API</h3>
+	<p class="lead">Go to <a target="_blank" href="{{ url('/graphql-playground') }}">graphql playground to test.</a></p>
+	<p class="lead">To see how to use graphQL for film routes, click <a href="{{ route('graphql.instructions') }}">here.</a></p>
+
+
+	<p class="lead">Task 2: Return input string without wovels, lowercased except first letter <span class="lead text-muted"> In console run command: php artisan {your-array}</span></p>
+	<p class="lead">Task 3: Return the next binary number in a string <span class="lead text-muted"> In console run command: php artisan {your-array}</span></p>
+http://127.0.0.1:8000/graphql-playground
+	<p class="lead">To view full list of Star Wars Films, click <a href="{{ route('films.index') }}">here</a>.</p>
     <p class="lead">To view full list of Star Wars Films, click <a href="{{ route('films.index') }}">here</a>.</p>
     <p class="lead">To view full list of Star Wars Starships which have > 84000 passengers, click <a href="{{ route('starship.index') }}">here</a>.</p>
     <hr class="my-4">
