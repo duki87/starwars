@@ -6,6 +6,12 @@
             :items-per-page="5"
             class="elevation-1"
         >
+            <template v-slot:[`item.release_date`]="{ item }">
+                {{ formatDate(item.release_date) }}
+            </template>
+            <template v-slot:[`item.id`]="{ item }">
+                <a :href="createLink(item.id)">Details</a>
+            </template>
         </v-data-table>
     </v-container>
 </template>
@@ -30,7 +36,7 @@
                 { text: 'Director', value: 'director' },
                 { text: 'Producer', value: 'producer' },
                 { text: 'Release Date', value: 'release_date' },
-                { text: 'Details', value: '' },
+                { text: 'Details', value: 'id' },
             ],
             filters: filters,
         }
@@ -43,6 +49,9 @@
         methods: {
             formatDate(value) {
                 return moment(value).format('DD.MM.YYYY.');
+            },
+            createLink(id) {
+                return `/films/${id}`;
             },
         },
         beforeCreate() {
