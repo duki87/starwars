@@ -5,9 +5,13 @@
  */
 
 require('./bootstrap');
+import Vuetify from 'vuetify';
+import store from './store';
 
 window.Vue = require('vue');
 window.moment = require('moment');
+Vue.use(Vuetify);
+import apolloProvider from './apollo';
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,6 +27,7 @@ window.moment = require('moment');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('films-component', require('./components/FilmsComponent.vue').default);
 Vue.component('starships-component', require('./components/StarshipsComponent.vue').default);
+Vue.component('films-test-component', require('./components/FilmsTestComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,4 +37,7 @@ Vue.component('starships-component', require('./components/StarshipsComponent.vu
 
 const app = new Vue({
     el: '#app',
+    vuetify: new Vuetify(),
+    apolloProvider,
+    store
 });

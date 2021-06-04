@@ -5,6 +5,7 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
+    allFilms: [Film!]! @all
     films: [Film!]! @paginate(defaultCount: 5) @orderBy(column: "episode_id", direction: "ASC")
     film(id: ID! @eq): Film @find
 }
