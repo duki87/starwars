@@ -14,16 +14,37 @@ const filmsQuery = gql`{
     }
 }`;
 
+const filmQuery = gql`
+    query($id: ID!) {
+        film(id: $id) {
+            title,
+            id,
+            episode_id,
+            director,
+            producer,
+            release_date,
+            opening_crawl,
+            characters {
+                id
+                name
+            }
+        }
+    }`;
+
 Vue.use(Vuex);
 
 const state = {
     // todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
-    films: []
+    films: [],
+    film: {}
 }
 
 const mutations = {
     fetchFilms (state, films) {
       state.films = films;
+    },
+    getFilm (state, film) {
+        state.film = film;
     },
     // addTodo (state, todo) {
     //   state.todos.unshift(todo)
@@ -41,6 +62,14 @@ const actions = {
     async fetchFilms ({ commit }) {
       const { data } = await apolloClient.query({query: filmsQuery})
       commit('fetchFilms', data.allFilms)
+    },
+    // async getFilm ({ commit }, filmId) {
+    //     const { data } = await apolloClient.query.mutate({mutation: filmQuery, variables: { id: filmId }})
+    //     commit('getFilm', data.film)
+    // },
+    async getFilm ({ commit }, filmId) {
+        const { data } = await apolloClient.query({query: filmQuery, variables: { id: filmId }})
+        commit('getFilm', data.film)
     },
 }
 

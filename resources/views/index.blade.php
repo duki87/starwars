@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container-fluid">
+{{--<div class="container-fluid">
     <div class="jumbotron transparent">
     <h1 class="display-4 mb-4">Star Wars | Documentation</h1>
 	<h3>Film List</h3>
@@ -24,5 +24,6 @@
         Github repository: <a class="btn btn-primary btn-lg" href="https://github.com/duki87/starwars" role="button" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a>
     </p>
     </div>
-</div>
+</div>--}}
+<router-view></router-view>
 @endsection

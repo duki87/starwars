@@ -11,8 +11,12 @@
 </head>
 
 <style>
-    body {
-        background: url('/img/background2.jpg') center no-repeat;
+    #app {
+        min-height: 600px;
+        background-image: url('/img/background2.jpg');
+        background-position: center 10%;
+        background-repeat: no-repeat;
+        background-color: black;
         color: white;
     }
     .transparent {
@@ -23,8 +27,11 @@
 
 <body>
     <div id="app">
-        @include('includes.header')
+        <v-app>
+        {{--@include('includes.header')--}}
+        <app-bar></app-bar>
         @yield('content')
+        </v-app>
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

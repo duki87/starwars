@@ -7,6 +7,7 @@
 require('./bootstrap');
 import Vuetify from 'vuetify';
 import store from './store';
+import router from './router';
 
 window.Vue = require('vue');
 window.moment = require('moment');
@@ -25,9 +26,10 @@ import apolloProvider from './apollo';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('films-component', require('./components/FilmsComponent.vue').default);
+Vue.component('films-component', require('./components/FilmsTestComponent.vue').default);
 Vue.component('starships-component', require('./components/StarshipsComponent.vue').default);
-Vue.component('films-test-component', require('./components/FilmsTestComponent.vue').default);
+Vue.component('films-test-component', require('./components/FilmsComponent.vue').default);
+Vue.component('app-bar', require('./components/AppBarComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -39,5 +41,6 @@ const app = new Vue({
     el: '#app',
     vuetify: new Vuetify(),
     apolloProvider,
+    router,
     store
 });
