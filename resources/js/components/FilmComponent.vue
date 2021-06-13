@@ -3,7 +3,6 @@
         <v-row align="start">
             <v-col md="4">
                 <v-img
-                    height="900"
                     class="fitted"
                     :src="'/img/movies/'+film.episode_id+'.jpg'"
                 ></v-img>
@@ -11,7 +10,8 @@
             <v-col md="8">
                 <v-card
                     :loading="loading"
-                    class="mx-auto my-12 light-green lighten-5"
+                    class="mx-auto light-green lighten-5"
+                    align="start"
                 >
                     <template slot="progress">
                     <v-progress-linear
@@ -132,6 +132,8 @@
     padding:10px;
 }
 .fitted {
-    object-fit: cover;
+    width: 100% !important;
+    height: 600px;
+    object-fit: cover !important;
 }
 </style>

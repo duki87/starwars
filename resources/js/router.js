@@ -3,9 +3,11 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const routes = [
-    { path: '/films', component: require('./components/FilmsComponent.vue').default },
+    { path: '/', component: require('./pages/HomePage.vue').default },
+    { path: '/films', component: require('./pages/FilmsPage.vue').default },
     { path: '/user/films/favorites', component: require('./components/FavoriteFilmsComponent.vue').default },
-    { path: '/films/:id', component: require('./components/FilmComponent.vue').default },
+    { path: '/films/add', component: require('./pages/AddFilmPage.vue').default },
+    { path: '/films/:id', component: require('./pages/FilmPage.vue').default },
     { path: '/characters/:id', component: require('./components/CharacterComponent.vue').default },
 ];
 

@@ -26,6 +26,7 @@ import apolloProvider from './apollo';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('app-component', require('./components/AppComponent.vue').default);
 Vue.component('films-component', require('./components/FilmsTestComponent.vue').default);
 Vue.component('starships-component', require('./components/StarshipsComponent.vue').default);
 Vue.component('films-test-component', require('./components/FilmsComponent.vue').default);

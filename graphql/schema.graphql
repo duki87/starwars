@@ -10,6 +10,19 @@ type Query {
     film(id: ID! @eq): Film @find
 }
 
+type Mutation {
+    createFilm(input: CreateFilmInput! @spread): Film @create
+}
+
+input CreateFilmInput {
+    title: String!
+    episode_id: String!
+    opening_crawl: String!
+    director: String!
+    producer: String!
+    release_date: String!
+}
+
 type Film {
     id: ID!
     title: String!

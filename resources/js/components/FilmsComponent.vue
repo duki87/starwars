@@ -16,6 +16,7 @@
     </v-container>
 </template>
 <script>
+    import DefaultLayout from '../layouts/DefaultLayout.vue';
     import { mapActions } from 'vuex';
 
     const filters = {
@@ -62,3 +63,14 @@
         }
     }
 </script>
+<style lang="scss" scoped>
+.container{
+    max-width: 100vw;
+    padding:10px;
+}
+.fitted {
+    width: 100% !important;
+    height: 600px;
+    object-fit: cover !important;
+}
+</style>

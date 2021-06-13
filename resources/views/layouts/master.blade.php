@@ -27,12 +27,14 @@
 
 <body>
     <div id="app">
-        <v-app>
-        {{--@include('includes.header')--}}
+        {{--<v-app>
         <app-bar></app-bar>
         @yield('content')
-        </v-app>
+        </v-app>--}}
+        {{--@include('includes.header')--}}
+        <app-component></app-component>
     </div>
+    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

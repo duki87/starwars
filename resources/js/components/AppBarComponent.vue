@@ -44,11 +44,20 @@
           </v-list-item>
 
           <router-link to="/films" style="text-decoration: none; color: inherit;">
-            <v-list-item> 
+            <v-list-item active="v-list-item--active"> 
               <v-list-item-icon>
-                <v-icon color="white">mdi-videocam-outline</v-icon>
+                <v-icon color="white">mdi-movie</v-icon>
               </v-list-item-icon>
               <v-list-item-title style="color: #fff !important">Films</v-list-item-title>
+            </v-list-item>
+          </router-link>
+
+          <router-link to="/films/add" style="text-decoration: none; color: inherit;">
+            <v-list-item active="v-list-item--active"> 
+              <v-list-item-icon>
+                <v-icon color="white">mdi-plus</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title style="color: #fff !important">Add Film</v-list-item-title>
             </v-list-item>
           </router-link>
         </v-list-item-group>
