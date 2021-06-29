@@ -60,4 +60,9 @@ class Film extends Model
             $q->where('people_id', $character_id);
         });
     }
+
+    public function cover()
+    {
+        return $this->morphOne('App\Image', 'imageable');
+    }
 }

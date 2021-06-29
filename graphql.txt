@@ -97,3 +97,21 @@
   }
 }
 
+mutation {
+    createFilm(input:{
+      title: "New Film"
+      episode_id: "457"
+      opening_crawl:"Test opening"
+      director:"Test Director"
+      producer:"Test Producer"
+      release_date: "02-01-1991"
+    }) {
+      title
+      episode_id
+      opening_crawl
+      director
+      producer
+      release_date
+    }
+}
+

@@ -89,7 +89,6 @@
 
 <script>
     import DefaultLayout from '../layouts/DefaultLayout.vue';
-    import { mapActions } from 'vuex';
 
     const filters = {
         all: films => films,

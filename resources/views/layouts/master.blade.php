@@ -32,6 +32,17 @@
         @yield('content')
         </v-app>--}}
         {{--@include('includes.header')--}}
+        {{auth()->user()}}
+        @auth('web')
+            You're a user!
+        @endauth
+        @auth('admin')
+            You're an admin!
+        @endauth
+        @auth('author')
+        You're an author!
+        @endauth
+    
         <app-component></app-component>
     </div>
     

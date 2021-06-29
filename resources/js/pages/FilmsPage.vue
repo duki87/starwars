@@ -11,7 +11,20 @@
                     {{ formatDate(item.release_date) }}
                 </template>
                 <template v-slot:[`item.id`]="{ item }">
-                    <router-link :to="'/films/'+item.id">Details</router-link>
+                    <router-link :to="'/films/'+item.id">
+                        <v-btn class="mx-2" fab dark small color="primary">
+                            <v-icon dark>
+                                visibility
+                            </v-icon>
+                        </v-btn>
+                    </router-link>
+                    <a @click="deleteFilm(item.id)">
+                        <v-btn class="mx-2" fab dark small color="red">
+                            <v-icon dark>
+                                delete
+                            </v-icon>
+                        </v-btn>
+                    </a>
                 </template>
             </v-data-table>
         </v-container>
@@ -60,12 +73,15 @@
             createLink(id) {
                 return `/films/${id}`;
             },
+            deleteFilm(filmId) {
+                this.$store.dispatch('deleteFilm', filmId);
+            },
         },
         beforeCreate() {
             this.$store.dispatch('fetchFilms');
         },
         mounted() {
-            console.log(this.$store.state.films);
+            //console.log(this.$store.state.films);
         }
     }
 </script>

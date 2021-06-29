@@ -105,14 +105,24 @@
                                         </v-btn>
                                     </v-date-picker>
                                 </v-menu>
-                            
                             </div>
-
-                            <v-btn
-                            class="mt-4 mb-4"
-                            type="submit"
+                            <v-row
+                                align="center"
+                                justify="space-around"
                             >
-                            Add Film
+                                <chips-list-component :items="people" :data="{listName: 'characters', buttonIcon: 'person'}" v-on:toggleItem="updateSelected"></chips-list-component>
+                                <chips-list-component :items="starships" :data="{listName: 'starships', buttonIcon: 'flight_takeoff'}" v-on:toggleItem="updateSelected"></chips-list-component>
+                                <chips-list-component :items="planets" :data="{listName: 'planets', buttonIcon: 'circle'}" v-on:toggleItem="updateSelected"></chips-list-component>
+                                <chips-list-component :items="vehicles" :data="{listName: 'vehicles', buttonIcon: 'commute'}" v-on:toggleItem="updateSelected"></chips-list-component>
+                                <chips-list-component :items="species" :data="{listName: 'species', buttonIcon: 'bug_report'}" v-on:toggleItem="updateSelected"></chips-list-component>
+                            </v-row>
+                            <v-divider class="mt-6"></v-divider>
+                            <v-btn
+                                class="mt-4 mb-4"
+                                type="submit"
+                                color="primary"
+                            >
+                                Add Film
                             </v-btn>
                         </v-form>
                     </v-card>
@@ -161,13 +171,40 @@
                     director: '',
                     producer: '',
                     release_date: '',
+                    characters: [],
+                    starships: [],
+                    planets: [],
+                    vehicles: [],
+                    species: []
                 }
             }
         },
         computed: {
-
+            people () {
+                return this.$store.state.people;
+            },
+            starships () {
+                return this.$store.state.starships;
+            },
+            planets() {
+                return this.$store.state.planets;
+            },
+            vehicles () {
+                return this.$store.state.vehicles;
+            },
+            species() {
+                return this.$store.state.species;
+            },
         },
         methods: {
+            updateSelected(data) {
+                let index = this.film[data.list].findIndex(item => item == data.id);
+                if(index == -1) {
+                    this.film[data.list].push(data.id);
+                } else {
+                    this.film[data.list].splice(index, 1);
+                }
+            },
             formatDate(value) {
                 return moment(value).format('DD.MM.YYYY.');
             },
@@ -176,7 +213,8 @@
             },
             submit() {
                 if(this.$refs.form.validate()) {
-                    this.$store.dispatch('addFilm', this.film);
+                    //this.$store.dispatch('addFilm', this.film);
+                    console.log(this.film)
                 }
             },
             validate () {
@@ -184,7 +222,11 @@
             },
         },
         beforeCreate() {
-            //this.$store.dispatch('fetchFilms');
+            this.$store.dispatch('fetchPeople');
+            this.$store.dispatch('fetchStarships');
+            this.$store.dispatch('fetchPlanets');
+            this.$store.dispatch('fetchVehicles');
+            this.$store.dispatch('fetchSpecies');
         },
         mounted() {
             //console.log(this.$store.state.films);

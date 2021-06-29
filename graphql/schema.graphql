@@ -8,10 +8,17 @@ type Query {
     allFilms: [Film!]! @all
     films: [Film!]! @paginate(defaultCount: 5) @orderBy(column: "episode_id", direction: "ASC")
     film(id: ID! @eq): Film @find
+
+    allPeople: [People!]! @all
+    allStarships: [Starship!]! @all
+    allPlanets: [Planet!]! @all
+    allVehicles: [Vehicle!]! @all
+    allSpecies: [Species!]! @all
 }
 
 type Mutation {
     createFilm(input: CreateFilmInput! @spread): Film @create
+    deleteFilm(id: ID!): Film @delete
 }
 
 input CreateFilmInput {
@@ -47,7 +54,6 @@ type People {
     skin_color: String!
     birth_year: String!
     gender: String!
-    birth_year: String!
     created_at: Date!
     films: [Film!]! @belongsToMany
 }
