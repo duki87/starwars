@@ -113,5 +113,23 @@ mutation {
       producer
       release_date
     }
+    
+    """ Belongstomany mutations """
+    mutation {
+    createFilm(input:{
+      title: "New Film 3"
+      episode_id: "457"
+      opening_crawl:"Test opening"
+      director:"Test Director"
+      producer:"Test Producer"
+      release_date: "02-01-1991"
+      characters: { connect: [1,2] }
+      cover: {
+    		weekday: 2
+      }
+    }) {
+			id
+    }
+}
 }
 

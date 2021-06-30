@@ -28,6 +28,9 @@ const GET_FILM = gql`
                 id
                 name
             }
+            cover {
+                url
+            }
         }
     }`;
 

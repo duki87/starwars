@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\APIModelTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Film extends Model
 {
@@ -29,27 +31,27 @@ class Film extends Model
 
     private static $apiCollection = 'films', $apiClass = \App\Film::class;
 
-    public function characters()
+    public function characters(): BelongsToMany
     {
         return $this->belongsToMany(People::class, 'people_films');
     }
 
-    public function planets()
+    public function planets(): BelongsToMany
     {
         return $this->belongsToMany(Planet::class, 'films_planets');
     }
 
-    public function starships()
+    public function starships(): BelongsToMany
     {
         return $this->belongsToMany(Starship::class, 'films_starships');
     }
 
-    public function vehicles()
+    public function vehicles(): BelongsToMany
     {
         return $this->belongsToMany(Vehicle::class, 'films_vehicles');
     }
 
-    public function species()
+    public function species(): BelongsToMany
     {
         return $this->belongsToMany(Species::class, 'films_species');
     }
@@ -61,7 +63,7 @@ class Film extends Model
         });
     }
 
-    public function cover()
+    public function cover(): MorphOne
     {
         return $this->morphOne('App\Image', 'imageable');
     }

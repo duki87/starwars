@@ -6,6 +6,7 @@
                     <v-img
                         class="fitted"
                         :src="'/img/movies/'+film.episode_id+'.jpg'"
+                        height="800px"
                     ></v-img>
                 </v-col>
                 <v-col md="8">
@@ -141,7 +142,7 @@
 }
 .fitted {
     width: 100% !important;
-    height: 600px;
+    max-height: 800px;
     object-fit: cover !important;
 }
 </style>

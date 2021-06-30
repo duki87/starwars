@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\APIModelTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Starship extends Model
 {
@@ -37,12 +38,12 @@ class Starship extends Model
 
     private static $apiCollection = 'starships', $apiClass = \App\Starship::class;
 
-    public function pilots()
+    public function pilots(): BelongsToMany
     {
         return $this->belongsToMany(Starship::class, 'people_starships');
     }
 
-    public function films()
+    public function films(): BelongsToMany
     {
         return $this->belongsToMany(Film::class, 'films_starships');
     }

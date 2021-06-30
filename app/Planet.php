@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\APIModelTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Planet extends Model
 {
@@ -15,12 +17,12 @@ class Planet extends Model
         "id", "name", "rotation_period", "orbital_period", "diameter", "climate", "gravity", "terrain", "surface_water", "population", "created", "edited", "url"
     ];
 
-    public function residents()
+    public function residents(): HasMany
     {
         return $this->hasMany(People::class, 'people_planets');
     }
 
-    public function films()
+    public function films(): BelongsToMany
     {
         return $this->belongsToMany(Film::class, 'films_planets');
     }

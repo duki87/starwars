@@ -4,6 +4,8 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
+scalar Upload @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")
+
 type Query {
     allFilms: [Film!]! @all
     films: [Film!]! @paginate(defaultCount: 5) @orderBy(column: "episode_id", direction: "ASC")
@@ -21,6 +23,10 @@ type Mutation {
     deleteFilm(id: ID!): Film @delete
 }
 
+extend type Mutation {
+    uploadFiles(cover: Upload!): String
+}
+
 input CreateFilmInput {
     title: String!
     episode_id: String!
@@ -28,6 +34,25 @@ input CreateFilmInput {
     director: String!
     producer: String!
     release_date: String!
+    characters: CreateCharactersRelation
+    #cover: CreateImageRelation
+}
+
+input CreateCharactersRelation {
+    connect: [ID!]
+    sync: [ID!]
+}
+
+input CreateImageRelation {
+    create: [CreateImageInput!]
+    connect: [ID!]
+    sync: [ID!]
+}
+
+input CreateImageInput {
+    url: String!
+    #imageable_id: String!
+    #imageable_type: Integer!
 }
 
 type Film {
@@ -43,6 +68,12 @@ type Film {
     starships: [Starship!]! @belongsToMany
     vehicles: [Vehicle!]! @belongsToMany
     species: [Species!]! @belongsToMany
+    cover: Image @morphTo
+}
+
+type Image {
+    id: ID!
+    url: String!
 }
 
 type People {

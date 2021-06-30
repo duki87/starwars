@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\APIModelTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Species extends Model
 {
@@ -28,17 +30,17 @@ class Species extends Model
 
     private static $apiCollection = 'species', $apiClass = \App\Species::class;
 
-    public function people()
+    public function people(): BelongsToMany
     {
         return $this->belongsToMany(People::class, 'people_species');
     }
 
-    public function films()
+    public function films(): BelongsToMany
     {
         return $this->belongsToMany(Film::class, 'films_species');
     }
 
-    public function homeworld()
+    public function homeworld(): BelongsTo
     {
         return $this->belongsTo(Planet::class, 'planet_id');
     }
